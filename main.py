@@ -38,7 +38,6 @@ if submit:
     # start = time.time()
     user_input_data = [[value1, value2, value3]]
     st.write(f'사용자가 입력한 데이터 : {user_input_data}')
-    result = predict(user_input_data)
 
 # st.title('Uber pickups in NYC')
 
