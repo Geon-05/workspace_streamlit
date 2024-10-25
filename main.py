@@ -21,6 +21,13 @@ import time
 # LotFrontage : 부동산에 연결된 거리의 선형 피트
 # LotArea : 평방 피트 단위의 부지 크기
 # GrLivArea : 거실 면적 평방피트
+with open('data/house_model_col3.pkl','rb')as f:
+    loaded_model = pickle.load(f)
+
+def predict_uf(input):
+    result = loaded_model.predict(input)
+    return result
+
 
 with st.form(key='form'):
     # var1 = st.text_input('input1')
@@ -38,6 +45,16 @@ if submit:
     # start = time.time()
     user_input_data = [[value1, value2, value3]]
     st.write(f'사용자가 입력한 데이터 : {user_input_data}')
+    start = time.time() # 시작시간 체크
+    result = predict_uf(user_input_data)
+    end = time.time() # 끝시간 체크
+    st.write(f'predict end: {end-start}s elapsed')
+    
+    st.write(f'input 1: {value1}')
+    st.write(f'input 2: {value2}')
+    st.write(f'input 3: {value3}')
+    st.write(f'예측 집값: {result}')
+    st.write(f'예측 집값: {result[0]}')
 
 # st.title('Uber pickups in NYC')
 
